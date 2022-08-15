@@ -1,5 +1,5 @@
-import '../styles/globals.css';
-import { object } from 'prop-types';
+import '../styles/globals.scss';
+import { object, func } from 'prop-types';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -12,6 +12,6 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 
 MyApp.propTypes = {
-  Component: object.isRequired,
+  Component: func.isRequired,
   pageProps: object.isRequired,
 };

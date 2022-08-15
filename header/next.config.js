@@ -39,6 +39,13 @@
 // module.exports = nextConfig
 
 const { withModuleFederation } = require('@module-federation/nextjs-mf');
+
+var customConfig = require('./webpack.custom.js');
+
+// Detect build environment
+// const env = process.env.NODE_ENV;
+// const isDev = env !== 'production';
+
 module.exports = {
   future: { webpack5: true },
   images: {
@@ -61,6 +68,9 @@ module.exports = {
     };
     config.cache = false;
     withModuleFederation(config, options, mfConf);
+
+    config = customConfig(config);
+
     if (!isServer) {
       config.output.publicPath = 'http://localhost:3001/_next/';
     }
