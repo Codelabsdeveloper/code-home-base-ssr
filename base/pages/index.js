@@ -1,12 +1,8 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
-const HeaderComponent = dynamic(
-  () => import('header/header'),
-  { ssr: false }
-)
-
+const HeaderComponent = dynamic(() => import('header/header'), { ssr: false });
 
 export default function Home() {
   return (
@@ -17,9 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderComponent />
-      <main >
-        Hello! This content is hosted locally.
-      </main>
+      <main>Hello! This content is hosted locally.</main>
     </div>
-  )
+  );
 }

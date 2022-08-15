@@ -6,7 +6,12 @@
     "dev": "next dev -p 3001",
     "build": "next build -p 3001",
     "start": "next start -p 3001",
-    "lint": "next lint"
+    "es-lint": "eslint . --ext .jsx,.js",
+    "es-lint:fix": "eslint . --ext .jsx,.js --fix",
+    "prettier": "prettier  --check \"**/*.{jsx,js,json}\"",
+    "prettier:fix": "prettier --check --write \"**/*.{jsx,js,json}\" ",
+    "lint": "npm run es-lint && npm run prettier",
+    "lint:fix": "npm run es-lint:fix && npm run prettier:fix"
   },
   "dependencies": {
     "@module-federation/nextjs-mf": "^1.1.1",
@@ -17,6 +22,10 @@
   },
   "devDependencies": {
     "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5"
+    "eslint-config-next": "12.2.5",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "prettier": "^2.7.1"
   }
 }

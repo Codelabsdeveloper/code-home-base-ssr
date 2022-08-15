@@ -38,10 +38,7 @@
 // }
 // module.exports = nextConfig
 
-
-const {
-  withModuleFederation,
-} = require("@module-federation/nextjs-mf");
+const { withModuleFederation } = require('@module-federation/nextjs-mf');
 module.exports = {
   future: { webpack5: true },
   images: {
@@ -51,22 +48,21 @@ module.exports = {
     const { isServer } = options;
     const mfConf = {
       mergeRuntime: true, //experimental
-      name: "header",
+      name: 'header',
       library: {
         type: config.output.libraryTarget,
-        name: "header",
+        name: 'header',
       },
-      filename: "static/runtime/remoteEntry.js",
-      remotes: {
-      },
+      filename: 'static/runtime/remoteEntry.js',
+      remotes: {},
       exposes: {
-        "./header": "./components/header",
+        './header': './components/header',
       },
     };
     config.cache = false;
     withModuleFederation(config, options, mfConf);
     if (!isServer) {
-      config.output.publicPath = "http://localhost:3001/_next/";
+      config.output.publicPath = 'http://localhost:3001/_next/';
     }
 
     return config;

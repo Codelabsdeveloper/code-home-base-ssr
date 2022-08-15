@@ -1,4 +1,3 @@
-
 // /** @type {import('next').NextConfig} */
 // const path = require('path');
 // const nextConfig = {
@@ -12,8 +11,8 @@
 //         filename: 'static/consumerFile.js',
 //         remoteType: "var",
 //         remotes: {
-//           header: path.resolve("../header/build/remoteEntry.js") 
-//           // header: "header" 
+//           header: path.resolve("../header/build/remoteEntry.js")
+//           // header: "header"
 
 //         },
 //         shared: [
@@ -39,9 +38,7 @@
 // }
 
 // module.exports = nextConfig
-const {
-  withModuleFederation,
-} = require("@module-federation/nextjs-mf");
+const { withModuleFederation } = require('@module-federation/nextjs-mf');
 
 module.exports = {
   future: { webpack5: true },
@@ -50,16 +47,15 @@ module.exports = {
   },
   webpack: (config, options) => {
     const mfConf = {
-      name: "base",
+      name: 'base',
       library: {
         type: config.output.libraryTarget,
-        name: "base",
+        name: 'base',
       },
       remotes: {
-        header: "header", 
+        header: 'header',
       },
-      exposes: {
-      },
+      exposes: {},
     };
     config.cache = false;
     withModuleFederation(config, options, mfConf);
