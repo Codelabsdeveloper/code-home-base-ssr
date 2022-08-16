@@ -42,6 +42,8 @@ const { withModuleFederation } = require('@module-federation/nextjs-mf');
 
 var customConfig = require('./webpack.custom.js');
 
+// const path = require('path');
+
 // Detect build environment
 // const env = process.env.NODE_ENV;
 // const isDev = env !== 'production';
@@ -75,6 +77,30 @@ module.exports = {
       config.output.publicPath = 'http://localhost:3001/_next/';
     }
 
+    return config;
+  },
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              localIdentName: '[name]__[local]',
+              exportLocalsConvention: 'camelCase',
+            },
+          },
+        },
+        'resolve-url-loader',
+        'sass-loader',
+      ],
+      // include: path.resolve(__dirname, '../src'),
+    });
+
+    // Return the altered config
     return config;
   },
 
