@@ -42,7 +42,7 @@ const { withModuleFederation } = require('@module-federation/nextjs-mf');
 
 var customConfig = require('./webpack.custom.js');
 
-// const path = require('path');
+const path = require('path');
 
 // Detect build environment
 // const env = process.env.NODE_ENV;
@@ -90,7 +90,7 @@ module.exports = {
         'resolve-url-loader',
         'sass-loader',
       ],
-      // include: path.resolve(__dirname, '../src'),
+      include: path.resolve(__dirname, '../src'),
     });
 
     // Return the altered config
