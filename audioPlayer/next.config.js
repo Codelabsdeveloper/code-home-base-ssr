@@ -1,43 +1,3 @@
-// /** @type {import('next').NextConfig} */
-// const path = require('path');
-// const nextConfig = {
-//   reactStrictMode: true,
-//   swcMinify: true,
-//   distDir: 'build',
-//   webpack: (config, options) => {
-//     config.plugins.push(
-//       new options.webpack.container.ModuleFederationPlugin({
-//         name:"base",
-//         filename: 'static/consumerFile.js',
-//         remoteType: "var",
-//         remotes: {
-//           header: path.resolve("../header/build/remoteEntry.js")
-//           // header: "header"
-
-//         },
-//         shared: [
-//           {
-//             react: {
-//               eager: true,
-//               singleton: true,
-//               requiredVersion: false,
-//             }
-//           },
-//           {
-//             "react-dom": {
-//               eager: true,
-//               singleton: true,
-//               requiredVersion: false,
-//             }
-//           },
-//         ]
-//       })
-//     )
-//     return config
-//   }
-// }
-
-// module.exports = nextConfig
 const { withModuleFederation } = require('@module-federation/nextjs-mf');
 
 var customConfig = require('./webpack.custom.js');
@@ -54,22 +14,28 @@ module.exports = {
     domains: [],
   },
   webpack: (config, options) => {
+    const { isServer } = options;
     const mfConf = {
-      name: 'base',
+      mergeRuntime: true, //experimental
+      name: 'audioplayer',
       library: {
         type: config.output.libraryTarget,
-        name: 'base',
+        name: 'audioplayer',
       },
-      remotes: {
-        header: 'header',
-        audioplayer: 'audioplayer',
+      filename: 'static/runtime/remoteEntry.js',
+      remotes: {},
+      exposes: {
+        './audioplayer': './src/components/audioplayer',
       },
-      exposes: {},
     };
     config.cache = false;
     withModuleFederation(config, options, mfConf);
 
     config = customConfig(config);
+
+    if (!isServer) {
+      config.output.publicPath = 'http://localhost:3002/_next/';
+    }
 
     return config;
   },

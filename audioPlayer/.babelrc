@@ -1,0 +1,13 @@
+{
+	"presets": [
+		[
+			"next/babel",
+			{
+				"preset-env": {
+					"useBuiltIns": "entry", //tells the preset to look for browserslist config source
+					"corejs": "core-js@3"
+				}
+			}
+		]
+	]
+}

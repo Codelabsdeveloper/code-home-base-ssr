@@ -1,17 +1,17 @@
 {
-  "name": "code-home-base-ssr",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:Codelabsdeveloper/code-home-base-ssr.git",
-  "author": "<codelabsdeveloper@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "start": "concurrently \"cd base; yarn dev \" \"cd header; yarn dev\"",
-    "build": "concurrently \"cd base; yarn build \" \"cd header; yarn build\"",
-    "serve": "concurrently \"cd base; yarn start \" \"cd header; yarn start\"",
-    "postinstall": "concurrently \"cd base; yarn\" \"cd header; yarn\""
-  },
-  "dependencies": {
-    "concurrently": "^7.3.0"
-  }
+	"name": "code-home-base-ssr",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:Codelabsdeveloper/code-home-base-ssr.git",
+	"author": "<codelabsdeveloper@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"start": "concurrently \"cd base; yarn dev \" \"cd header; yarn dev\"  \"cd audioPlayer; yarn dev \"",
+		"build": "concurrently \"cd base; yarn build \" \"cd header; yarn build\" \"cd audioPlayer; yarn build \"",
+		"serve": "concurrently \"cd base; yarn start \" \"cd header; yarn start\" \"cd audioPlayer; yarn start \"",
+		"postinstall": "concurrently \"cd base; yarn\" \"cd header; yarn\" \"cd audioPlayer; yarn\""
+	},
+	"dependencies": {
+		"concurrently": "^7.3.0"
+	}
 }
